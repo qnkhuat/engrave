@@ -1,3 +1,4 @@
+import { useEffect } from "react";
 import logo from './logo.svg';
 import './App.css';
 import { ethers } from "ethers";
@@ -17,14 +18,39 @@ const App = () => {
   // For this, you need the account signer...
   const signer = provider.getSigner();
 
+  useEffect(() => {
 
-  const blockNumber = provider.getBlockNumber().then(console.log);
-  // Send 1 ether to an ens name.
-  const tx = signer.sendTransaction({
-    to: "0x46F05f5f6AEBdE7413F094097f9800F07A7Ab610",
-    value: ethers.utils.parseEther("1.0"),
-    data: ethers.utils.hexlify(ethers.utils.toUtf8Bytes("yo wassup")),
-  });
+    //signer.getAddress().then(addr => signer.sendTransaction({
+    //  to: addr,
+    //  value: ethers.utils.parseEther("0.0"),
+    //  data: ethers.utils.hexlify(ethers.utils.toUtf8Bytes("yo wassupfsdddddfjsdklfjsdklfjsdklfjlsdkjflsdkjflsdkjfklsdj fklj fjsdl kfjsdklf jsdklf jsdkl fklsdaj fklj afkladjflk sadjklfsdjfkljsdak jfsdkljf lsdjfksd jfklasj fkljsd fkljdsa klfd")),
+    //}).then(console.log));
+
+  }, [])
+
+
+
+  useEffect(() => {
+    const abc = async () => {
+      const daiAddress = "0x9cc28ef5c0FA1e332F464A84A31fD6398d4b33Fe";
+      const daiAbi = [
+        "function getAllWrites() view returns (address[], string[], uint256[])",
+        "function getWriteByAddress(address from) view returns (address[], string[], uint256[])",
+        "function write(string text)"
+      ];
+      const daiContract = new ethers.Contract(daiAddress, daiAbi, provider);
+
+      const daiWithSigner = daiContract.connect(signer);
+      //await daiWithSigner.write("ngockq");
+      const res = await daiContract.getAllWrites();
+
+      console.log("RES ne: ", res);
+    }
+    abc();
+    //
+    //daiContract.getSenderWrites().then(console.log);
+
+  }, [])
   return (
     <div className="App">
       <header className="App-header">

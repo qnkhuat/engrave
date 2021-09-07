@@ -1,0 +1,11 @@
+contracts/.placeholder
+test/.placeholder
+build
+node_modules
+
+node_modules
+.env
+
+#Hardhat files
+cache
+artifacts
