@@ -1,5 +1,0 @@
-[
-  "function getAllWrites() view returns (address[], string[], uint256[])",
-  "function getWritesByAddress(address from) view returns (address[], string[], uint256[])",
-  "function write(string text)"
-]

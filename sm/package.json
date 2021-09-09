@@ -4,6 +4,8 @@
   "description": "Engrave your words to Ethereum chain",
   "main": "index.ts",
   "scripts": {
+    "deploy": "hardhat run scripts/deploy.js",
+    "deploy:ganache": "hardhat run scripts/deploy.js --network ganache",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "",
