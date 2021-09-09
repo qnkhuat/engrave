@@ -5,7 +5,6 @@ import "hardhat/console.sol";
 contract Engrave {
 
   struct Write {
-    address writer;
     string text;
     uint time;
   }
@@ -35,7 +34,7 @@ contract Engrave {
     {
       require(bytes(text).length > 0, "text must be non-empty");
 
-      Write memory newWrite = Write({text: text, time: block.timestamp, writer: msg.sender });
+      Write memory newWrite = Write({text: text, time: block.timestamp });
 
       uint32 writerIndex = addressMapping[msg.sender];
       if (writerIndex == 0) { 
