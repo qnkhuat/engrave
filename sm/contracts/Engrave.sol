@@ -3,7 +3,9 @@ pragma solidity ^0.8.0;
 import "hardhat/console.sol";
 
 contract Engrave {
+
   address owner;
+  // 0.00125ETH on ganache
   mapping(address => bytes32[]) database;
 
   constructor(){
@@ -14,7 +16,6 @@ contract Engrave {
     require(writeTx.length > 0, "writeTx must be-non-zero");
     database[msg.sender].push(writeTx);
   }
-
 
   function getWritesByAddress(address by, uint page, uint limit)
     public
