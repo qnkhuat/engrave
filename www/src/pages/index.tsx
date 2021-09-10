@@ -29,7 +29,6 @@ const Home = () => {
       const tx = engraveTranasction({provider, data: textInput})
         .then(() => alert("succeed"))
         .catch(alert);
-      console.log(tx);
     } 
   }
 

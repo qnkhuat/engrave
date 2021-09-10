@@ -26,7 +26,7 @@ export const EthersProvider: React.FC = ({ children }) => {
     const init = async () => {
       window.ethereum.enable();
 
-      const tempProvider = new ethers.providers.Web3Provider(window.ethereum);
+      const tempProvider = new ethers.providers.Web3Provider(window.ethereum, "any");
 
       tempProvider.on("network", (_, oldnetwork) => {
         // when a provider makes its initial connection, it emits a "network"
