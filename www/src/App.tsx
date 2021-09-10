@@ -34,17 +34,15 @@ const App = () => {
           rows={5}
           onChange={handleOnChange}
           className="w-full p-4 resize-none outline-none border-gray-200 border-2 rounded-md block m-auto"/>
-        <div>
-          <div className="flex justify-between items-center pt-2">
-            <p className="text-gray-500 text-sm pl-1">Estimated transaction's fee: {estimatedFee}ETH</p>
-            <button className="flex justify-center items-center bg-gray-500 rounded-md p-2 text-white hover:bg-gray-600"
-              onClick={handleEngrave}
-            >
-              <div className="inline-block transform rotate-90 inline-block mr-2">
-                <AirplaneIcon/>
-              </div> Send
-            </button>
-          </div>
+        <div className="flex justify-between items-center pt-2">
+          <p className="text-gray-500 text-sm pl-1">Estimated transaction's fee: {estimatedFee}ETH</p>
+          <button className="flex justify-center items-center bg-gray-500 rounded-md p-2 text-white hover:bg-gray-600"
+            onClick={handleEngrave}
+          >
+            <div className="inline-block transform rotate-90 inline-block mr-2">
+              <AirplaneIcon/>
+            </div> Send
+          </button>
         </div>
       </div>
     </div>

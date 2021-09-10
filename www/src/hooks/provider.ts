@@ -10,6 +10,7 @@ const useProvider = (): ethers.providers.Web3Provider | undefined => {
 
   useEffect(() => {
     const tempProvider = new ethers.providers.Web3Provider(window.ethereum);
+    window.ethereum.enable();
 
     tempProvider.on("network", (_, oldNetwork) => {
       // When a Provider makes its initial connection, it emits a "network"
@@ -27,7 +28,7 @@ const useProvider = (): ethers.providers.Web3Provider | undefined => {
 
 export default useProvider;
 
-// A Web3Provider wraps a standard Web3 provider, which is
+  // A Web3Provider wraps a standard Web3 provider, which is
   // what Metamask injects as window.ethereum into each page
   //const provider = new ethers.providers.Web3Provider(window.ethereum);
   //provider.on("network", (_, oldNetwork) => {

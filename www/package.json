@@ -20,6 +20,7 @@
   "scripts": {
     "start": "craco start",
     "build": "craco build",
+    "serve": "serve ./build",
     "test": "craco test",
     "eject": "react-scripts eject"
   },
