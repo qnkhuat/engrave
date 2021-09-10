@@ -4,7 +4,7 @@ const chaiAsPromised = require("chai-as-promised");
 use(chaiAsPromised);
 
 describe("Engrave", () => {
-  let engrave, owner, addr1, addr2, addr3;
+  let engrave, addr1, addr2, addr3;
   // Fake a tx hash of transaction
   const writeTxSample1 = "0x5fc43f123ebb03d4e89396e59acb19957eb898a47a406890c43fb33be6732432";
   const writeTxSample2 = "0x328323123ebb03d4e89396e59acb19957eb898a47a406890c43fb33be6732c3a";
@@ -65,7 +65,6 @@ describe("Engrave", () => {
       let txs = await engrave.getWritesByAddress(addr3.address, 1, 30);
 
       expect(txs.length).to.be.equal(0);
-      
     });
 
 

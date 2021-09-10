@@ -1,72 +1,52 @@
-import { useEffect } from "react";
-import logo from './logo.svg';
-import './App.css';
-import { ethers } from "ethers";
-
-declare global {
-  interface Window { ethereum: any; }
-}
+import { useState, useEffect } from "react";
+import useProvider from "./hooks/provider";
+import AutoTextArea from "./components/AutoTextArea";
+import { sendTransaction, estimateTranasctionFee, engraveTranasction } from "./lib/transactions";
+import { ReactComponent as AirplaneIcon }from "./components/icons/airplane.svg";
 
 const App = () => {
+  const provider = useProvider();
+  const [ estimatedFee, setEstimatedFee ] = useState("0.0");
+  const [ textInput, setTextInput ] = useState("");
 
-  // A Web3Provider wraps a standard Web3 provider, which is
-  // what Metamask injects as window.ethereum into each page
-  const provider = new ethers.providers.Web3Provider(window.ethereum);
-
-  // The Metamask plugin also allows signing transactions to
-  // send ether and pay to change state within the blockchain.
-  // For this, you need the account signer...
-  const signer = provider.getSigner();
-
-  useEffect(() => {
-
-    //signer.getAddress().then(addr => signer.sendTransaction({
-    //  to: addr,
-    //  value: ethers.utils.parseEther("0.0"),
-    //  data: ethers.utils.hexlify(ethers.utils.toUtf8Bytes("yo wassupfsdddddfjsdklfjsdklfjsdklfjlsdkjflsdkjflsdkjfklsdj fklj fjsdl kfjsdklf jsdklf jsdkl fklsdaj fklj afkladjflk sadjklfsdjfkljsdak jfsdkljf lsdjfksd jfklasj fkljsd fkljdsa klfd")),
-    //}).then(console.log));
-
-  }, [])
-
-
-
-  useEffect(() => {
-    const abc = async () => {
-      const daiAddress = "0x9cc28ef5c0FA1e332F464A84A31fD6398d4b33Fe";
-      const daiAbi = [
-        "function getAllWrites() view returns (address[], string[], uint256[])",
-        "function getWriteByAddress(address from) view returns (address[], string[], uint256[])",
-        "function write(string text)"
-      ];
-      const daiContract = new ethers.Contract(daiAddress, daiAbi, provider);
-
-      const daiWithSigner = daiContract.connect(signer);
-      //await daiWithSigner.write("ngockq");
-      const res = await daiContract.getAllWrites();
-
-      console.log("RES ne: ", res);
+  const handleOnChange = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
+    setTextInput(e.target.value);
+    if( e.target.value == "" ) {
+      setEstimatedFee("0.0");
+    } else if ( provider ){
+      estimateTranasctionFee(provider, e.target.value, "0.0").then(setEstimatedFee).catch(console.error);
     }
-    abc();
-    //
-    //daiContract.getSenderWrites().then(console.log);
+  }
 
-  }, [])
+  const handleEngrave = async () => {
+    if (provider) {
+      const tx = await engraveTranasction(provider, textInput).catch(console.error);
+    } 
+  }
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div className="container m-auto">
+      <div id="navbar">
+      </div>
+      <div className="flex flex-col justify-center w-4/5 max-w-2xl m-auto">
+        <h3 className="text-xl font-bold text-center my-12">Engrave words into ethereum chain</h3>
+        <AutoTextArea placeholder="A thousand words" 
+          rows={5}
+          onChange={handleOnChange}
+          className="w-full p-4 resize-none outline-none border-gray-200 border-2 rounded-md block m-auto"/>
+        <div>
+          <div className="flex justify-between items-center pt-2">
+            <p className="text-gray-500 text-sm pl-1">Estimated transaction's fee: {estimatedFee}ETH</p>
+            <button className="flex justify-center items-center bg-gray-500 rounded-md p-2 text-white hover:bg-gray-600"
+              onClick={handleEngrave}
+            >
+              <div className="inline-block transform rotate-90 inline-block mr-2">
+                <AirplaneIcon/>
+              </div> Send
+            </button>
+          </div>
+        </div>
+      </div>
     </div>
   );
 }

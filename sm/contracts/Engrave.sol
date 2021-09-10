@@ -4,7 +4,7 @@ import "hardhat/console.sol";
 
 contract Engrave {
 
-  address owner;
+  address public owner;
   // 0.00125ETH on ganache
   mapping(address => bytes32[]) database;
 
@@ -44,4 +44,5 @@ contract Engrave {
       }
       return txs;
     }
+
 }
