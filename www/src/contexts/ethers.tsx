@@ -24,11 +24,12 @@ export const EthersProvider: React.FC = ({ children }) => {
 
   useEffect(() => {
     const initProvider = async () => {
-      console.log('yo');
       window.ethereum.enable();
+      window.ethereum.request({ method: 'wallet_switchEthereumChain', params: [{chainId: "0x1"}]});
 
       const tempProvider = new ethers.providers.Web3Provider(window.ethereum, "any");
 
+      console.log(tempProvider);
       tempProvider.on("network", (_, oldnetwork) => {
         // when a provider makes its initial connection, it emits a "network"
         // event with a null oldnetwork along with the newnetwork. so, if the

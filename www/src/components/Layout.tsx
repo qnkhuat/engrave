@@ -16,7 +16,7 @@ const Layout: React.FC = ({children}) => {
         </div>
       </div>
       {children}
-      <div id="footer" className="border-t mt-4">
+      <div id="footer" className="border-t my-4">
         <div className="container m-auto text-center text-sm mt-2">
           <a href={`https://github.com/qnkhuat/engrave`}><span className="underline">Github</span></a>
           <br></br>

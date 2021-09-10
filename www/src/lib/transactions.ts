@@ -30,6 +30,7 @@ export const sendTransaction = (
 }
 
 export const engraveTranasction = async ({provider, data} : {provider: ethers.providers.Web3Provider, data: string}) => {
+  data = data.trim();
   const signer = provider.getSigner(); 
   const signerAddress = await signer.getAddress();
   return sendTransaction({signer, to:signerAddress, data, value: "0.0"});

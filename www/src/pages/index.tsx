@@ -5,11 +5,10 @@ import { useEthersContext } from "../contexts/ethers";
 import { estimateTranasctionFee, engraveTranasction } from "../lib/transactions";
 
 import AutoTextArea from "../components/AutoTextArea";
-import { ReactComponent as AirplaneIcon }from "../components/icons/airplane.svg";
+import { ReactComponent as AirplaneIcon } from "../components/icons/airplane.svg";
 
 const Home = () => {
   const { provider, gasPrice } = useEthersContext();
-  console.log("gas price: ", gasPrice);
   const [ estimatedFee, setEstimatedFee ] = useState("0.0");
   const [ textInput, setTextInput ] = useState("");
 
@@ -40,7 +39,7 @@ const Home = () => {
         <div className="flex flex-col justify-center m-auto">
           <h3 className="text-xl font-bold text-center mb-6">Engrave words into ethereum chain</h3>
           <AutoTextArea placeholder="A thousand words" 
-            rows={5}
+            rows={6}
             onChange={e => setTextInput(e.target.value)}
             className="w-full p-4 resize-none outline-none border-gray-200 border-2 rounded-md block m-auto"/>
           <div className="flex justify-between items-center pt-2">
