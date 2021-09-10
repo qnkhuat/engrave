@@ -23,7 +23,8 @@ export const EthersProvider: React.FC = ({ children }) => {
   const [ gasPrice, setGasPrice] = useState<ethers.BigNumber>();
 
   useEffect(() => {
-    const init = async () => {
+    const initProvider = async () => {
+      console.log('yo');
       window.ethereum.enable();
 
       const tempProvider = new ethers.providers.Web3Provider(window.ethereum, "any");
@@ -38,15 +39,27 @@ export const EthersProvider: React.FC = ({ children }) => {
       });
 
       setProvider(tempProvider);
-
-      const tempGasPrice = await tempProvider.getGasPrice();
-      setGasPrice(tempGasPrice);
     }
 
     if (!provider && window.ethereum) {
-      init();
+      initProvider();
     }
   }, [window.ethereum]);
+
+  // periodically update gas price
+  useEffect(() => {
+    if( provider ) {
+      const loadGasPrice = () => {
+        provider.getGasPrice().then(setGasPrice);
+      }
+
+      loadGasPrice();
+      const loadGasPriceInterval = setInterval(() => {
+        loadGasPrice();
+      }, 15 * 1000);
+      return () => clearInterval(loadGasPriceInterval);
+    }
+  }, [provider]);
 
   return (
     <EthersContext.Provider
