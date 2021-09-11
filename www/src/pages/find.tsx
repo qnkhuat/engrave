@@ -63,7 +63,6 @@ const Find: React.FC<Props> = (props) => {
     }
   }, [provider]);
 
-
   useEffect(() => {
     if( provider && inputValue && inputValue.length > 0 ) {
       const findTimeout = setTimeout(() => {
@@ -71,8 +70,7 @@ const Find: React.FC<Props> = (props) => {
       }, 200);
       return () => clearTimeout(findTimeout);
     }
-  }, [inputValue]);
-
+  }, [provider, inputValue]);
 
   return <Layout>
     <div className="container m-auto">
@@ -83,7 +81,7 @@ const Find: React.FC<Props> = (props) => {
         <button onClick={() => handleFind(inputValue)}
           className="outline-none rounded-r px-4 py-2 ml-2 bg-blue-400 text-white">Find</button>
       </div>
-      {txs.map( (tx) => <Transaction key={tx.hash} showTime tx={tx} className="mb-4"></Transaction>)}
+      {txs.map( (tx) => <Transaction key={tx.hash} showTime tx={tx} className="mb-4 border-b pb-4"></Transaction>)}
       {error && <p>{error}</p>}
     </div>
   </Layout>

@@ -17,11 +17,13 @@ const Transaction: React.FC<Props> = ({ tx, showTime=false, className="" }) => {
     }
   }, [tx, showTime]);
 
-  console.log(ethers.utils.toUtf8String(tx.data));
   return <div className={`text-sm ${className}`}>
-    <p><strong>Hash:</strong> {tx.hash}</p>
+    <p><strong>Hash: </strong> {tx.hash}</p>
+    <p><strong>Status: </strong> {tx.blockNumber ? "Success" : "Pending"}</p>
+    {tx.blockNumber && <p><strong>Block:</strong> {tx.blockNumber}</p>}
+    <p><strong>Etherscan: </strong> <a className="alink" target="#" href={`https://etherscan.io/tx/${tx.hash}`}>link</a></p>
     {time && <p><strong>Time:</strong> {time.toLocaleString()}</p>}
-    <p><strong>Data:</strong></p><p className="whitespace-pre-line"> {ethers.utils.toUtf8String(tx.data)}</p>
+    <p><strong>Data: </strong></p><p className="whitespace-pre-line"> {ethers.utils.toUtf8String(tx.data)}</p>
   </div>
 }
 
