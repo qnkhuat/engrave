@@ -1,8 +1,7 @@
-import React from "react";
+import { FC } from "react";
 import { Link } from "react-router-dom";
 
-const Layout: React.FC = ({children}) => {
-
+const Layout: FC = ({ children }) => {
   return (
     <>
       <div id="header" className="border-b mb-4">

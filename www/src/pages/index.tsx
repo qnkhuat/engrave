@@ -1,16 +1,19 @@
 import { useState, useEffect } from "react";
-import Layout from "../components/Layout";
 
-import { useEthersContext } from "../contexts/ethers";
 import { estimateTranasctionFee, engraveTranasction } from "../lib/transactions";
+import { useEthersContext } from "../contexts/ethers";
+import useModal from "../hooks/modal";
 
-import AutoTextArea from "../components/AutoTextArea";
 import { ReactComponent as AirplaneIcon } from "../components/icons/airplane.svg";
+import AutoTextArea from "../components/AutoTextArea";
+import Layout from "../components/Layout";
+import Modal from "../components/Modal";
 
 const Home = () => {
   const { provider, gasPrice } = useEthersContext();
   const [ estimatedFee, setEstimatedFee ] = useState("0.0");
   const [ textInput, setTextInput ] = useState("");
+  const [ open, toggle ] = useModal(false);
 
   useEffect(() => {
     const updatePriceEstimationTimeout = setTimeout(() => {
@@ -54,6 +57,11 @@ const Home = () => {
           </div>
         </div>
       </div>
+      <Modal open={open} onClose={toggle}>
+        <div className="h-24 w-24 bg-white">
+          <h3> Hi there</h3>
+        </div>
+      </Modal>
     </Layout>
   );
 }
