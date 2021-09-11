@@ -1,5 +1,5 @@
 <h1 style="border-bottom:0" align="center">Engrave - Write message into the ethereum chain</h1>
-<a href="https://tstream.club"><p align="center"><img style="border-radius:20px; width:100px;background:white; padding:10px;" src="./www/public/logo.svg"/></p></a>
+<a href="https://tstream.club"><p align="center"><img style="border-radius:20px; width:100px;padding:10px;" src="./www/public/logo.png"/></p></a>
 
 <p align="center"><a href="https://engrave.on.fleek.co">Website</a></p>
 
@@ -34,3 +34,6 @@ Currently this contract is deployed on:
 - [Rinkeby]()
 - [Goerli]()
 - Ethereum Mainnet(soon)
+
+## The icon
+<div>Icons made by <a href="https://www.freepik.com" title="Freepik">Freepik</a> from <a href="https://www.flaticon.com/" title="Flaticon">www.flaticon.com</a></div>
