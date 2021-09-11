@@ -4,10 +4,11 @@
   "description": "Engrave your words to Ethereum chain",
   "main": "index.ts",
   "scripts": {
+    "compile":"hardhat clean && hardhat compile",
     "deploy": "hardhat run scripts/deploy.js",
     "deploy:ganache": "hardhat run scripts/deploy.js --network ganache",
     "deploy:ropsten": "hardhat run scripts/deploy.js --network ropsten",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "hardhat test"
   },
   "author": "",
   "license": "ISC",
