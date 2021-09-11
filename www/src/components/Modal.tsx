@@ -11,7 +11,7 @@ interface Props {
 const Modal: React.FC<Props> = ({ open, onClose, children }) => {
   const backdropRef = useRef<HTMLDivElement>(null);
   const handleOnClickBackDrop = (e: React.MouseEvent<HTMLElement>) => {
-    if (backdropRef.current && backdropRef.current == e.target && onClose) onClose();
+    if (backdropRef.current && backdropRef.current === e.target && onClose) onClose();
   }
   return ReactDOM.createPortal(
     <>

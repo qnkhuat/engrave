@@ -7,10 +7,11 @@ const Layout: FC = ({ children }) => {
       <div id="header" className="border-b mb-4">
         <div className="container m-auto flex justify-between items-center h-16 font-bold">
           <div className="left">
-            <Link to="/"><img className="h-12" src="/logo.svg" /></Link>
+            <Link to="/"><img alt="engrave logo" className="h-12" src="/logo.svg" /></Link>
           </div>
-          <div className="right">
-            <a className="font-bold" href="https://github.com/qnkhuat/engrave">GitHub</a>
+          <div className="right font-bold">
+            <Link className="border-r-2 border-black pr-2" to="/find">Find</Link>
+            <a className="pl-2" href="https://github.com/qnkhuat/engrave">GitHub</a>
           </div>
         </div>
       </div>

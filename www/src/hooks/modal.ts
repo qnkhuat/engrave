@@ -1,10 +1,10 @@
 import { useState } from "react";
 
-const useModal = (open = false): [ boolean, () => void ] => {
+const useModal = (open = false): [ boolean, (value: boolean) => void ] => {
   const [ state, setState] = useState(open);
 
-  const toggle = () => {
-    setState(!state);
+  const toggle = (value: boolean) => {
+    setState(value);
   }
 
   return [ state, toggle ];

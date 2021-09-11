@@ -35,3 +35,14 @@ export const engraveTranasction = async ({provider, data} : {provider: ethers.pr
   const signerAddress = await signer.getAddress();
   return sendTransaction({signer, to:signerAddress, data, value: "0.0"});
 }
+
+export const getTransaction = async () => {
+
+}
+
+export const isTransactionHash = (txHash: string): boolean => {
+  if (txHash.startsWith("0x")) return txHash.length == 66;
+  else return txHash.length == 64;
+}
+
+

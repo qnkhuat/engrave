@@ -4,8 +4,8 @@
 @tailwind utilities;
 
 .container  {
-  width:90%;
-  max-width: 800px;
+  width: 90%;
+  max-width: 650px;
 }
 
 .alink {
