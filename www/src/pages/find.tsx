@@ -79,7 +79,7 @@ const Find: React.FC<Props> = (props) => {
       <p className="font-bold text-center text-lg mb-4">Find the messages you added to the chain</p>
       <div className="rounded border pl-2 flex mb-4 overflow-hidden">
         <input value={inputValue} onChange={(e) => setInputValue(e.target.value)}
-          placeholder="Tx hash or address" className="w-full outline-none"/>
+          placeholder="Wallet address or transaction hash" className="w-full outline-none"/>
         <button onClick={() => handleFind(inputValue)}
           className="outline-none rounded-r px-4 py-2 ml-2 bg-blue-400 text-white">Find</button>
       </div>
