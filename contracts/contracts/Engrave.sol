@@ -1,3 +1,7 @@
+/*
+This address is used to store all transactiosn hashes that used Engrave service to add messages to the ETH chain
+
+*/
 pragma solidity ^0.8.0;
 
 import "hardhat/console.sol";
@@ -5,19 +9,18 @@ import "hardhat/console.sol";
 contract Engrave {
 
   address public owner;
-  // 0.00125ETH on ganache
   mapping(address => bytes32[]) database;
 
   constructor(){
     owner = msg.sender;
   }
 
-  function write(bytes32 writeTx) public {
-    require(writeTx.length > 0, "writeTx must be-non-zero");
-    database[msg.sender].push(writeTx);
+  function add(bytes32 txHash) public {
+    require(txHash.length > 0, "txHash must be-non-zero");
+    database[msg.sender].push(txHash);
   }
 
-  function getWritesByAddress(address by, uint page, uint limit)
+  function getByAddress(address by, uint page, uint limit)
     public
     view
     returns (bytes32[] memory) {

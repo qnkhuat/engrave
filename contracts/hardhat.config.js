@@ -18,8 +18,9 @@ task("accounts", "Prints the list of accounts", async (taskArgs, hre) => {
  * @type import('hardhat/config').HardhatUserConfig
  */
 
-const ALCHEMY_API_KEY = process.env.ALCHEMY_API_KEY;
-const ROPSTEN_PRIVATE_KEY = process.env.ROPSTEN_PRIVATE_KEY;
+const ALCHEMY_API_KEY = process.env.ALCHEMY_API_KEY | "";
+const ROPSTEN_PRIVATE_KEY = process.env.ROPSTEN_PRIVATE_KEY || "";
+const MAINNET_PRIVATE_KEY = process.env.MAINNET_PRIVATE_KEY || "";
 
 module.exports = {
   solidity: {
@@ -39,7 +40,11 @@ module.exports = {
     ropsten: {
       url: `https://eth-ropsten.alchemyapi.io/v2/${ALCHEMY_API_KEY}`,
       accounts: [`0x${ROPSTEN_PRIVATE_KEY}`],
-    }
+    },
+    mainnet: {
+      url: `https://eth-mainnet.alchemyapi.io/v2/${ALCHEMY_API_KEY}`,
+      accounts: [`0x${MAINNET_PRIVATE_KEY}`],
+    },
 
   },
   abiExporter: {

@@ -8,12 +8,13 @@ declare global {
 interface EthersContextInterface {
   provider: ethers.providers.Web3Provider | undefined;
   gasPrice: ethers.BigNumber | undefined;
+  network: ethers.providers.Network | undefined;
 }
 
 export const EthersContext = React.createContext<EthersContextInterface>({
   provider: undefined,
   gasPrice: undefined,
-
+  network: undefined,
 });
 
 export const useEthersContext = () => useContext(EthersContext);
@@ -21,15 +22,14 @@ export const useEthersContext = () => useContext(EthersContext);
 export const EthersProvider: React.FC = ({ children }) => {
   const [ provider, setProvider ] = useState<ethers.providers.Web3Provider>();
   const [ gasPrice, setGasPrice] = useState<ethers.BigNumber>();
+  const [ network, setNetwork] = useState<ethers.providers.Network>();
 
   useEffect(() => {
     const initProvider = async () => {
       window.ethereum.enable();
-      window.ethereum.request({ method: 'wallet_switchEthereumChain', params: [{chainId: "0x1"}]});
 
       const tempProvider = new ethers.providers.Web3Provider(window.ethereum, "any");
 
-      console.log(tempProvider);
       tempProvider.on("network", (_, oldnetwork) => {
         // when a provider makes its initial connection, it emits a "network"
         // event with a null oldnetwork along with the newnetwork. so, if the
@@ -37,8 +37,11 @@ export const EthersProvider: React.FC = ({ children }) => {
         if (oldnetwork) {
           window.location.reload();
         };
+
       });
 
+      const tempNetwork = await tempProvider.getNetwork();
+      setNetwork(tempNetwork);
       setProvider(tempProvider);
     }
 
@@ -66,6 +69,7 @@ export const EthersProvider: React.FC = ({ children }) => {
     <EthersContext.Provider
       value={{
         provider,
+          network,
           gasPrice
       }}>
       {children}

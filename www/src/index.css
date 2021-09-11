@@ -4,6 +4,11 @@
 @tailwind utilities;
 
 .container  {
-  width:90%;
-  max-width: 800px;
+  width: 90%;
+  max-width: 650px;
+}
+
+.alink {
+  color: rgb(96, 165, 250);
+  text-decoration: underline; 
 }
