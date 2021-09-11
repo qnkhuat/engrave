@@ -19,9 +19,9 @@ Also, I'm learning about web3 so I think it'd be fun to build this
 
 
 # Build with 
-- [ReactJs]() - Framework for front-end
-- [Fleek]() - Deploy the front-end on IPFS
-- [Hardhat]() - for the development of smart contract
+- [Fleek](https://fleek.co/) - Deploy the front-end on IPFS
+- [Hardhat](https://hardhat.org/) - for the development of smart contract
+- [Ethers](https://docs.ethers.io/) - library to interact with Ethereum blockchain
 
 # Engrave smart contract
 This project comes with a smart contract to stores transactions that users send to the chain using Engrave
