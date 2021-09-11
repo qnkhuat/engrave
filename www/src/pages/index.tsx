@@ -44,6 +44,7 @@ const Home = () => {
 
   const handleEngrave = () => {
     if (provider) {
+      if(textInput == "") return;
       engraveTranasction({provider, data: textInput})
         .then((tx) => {
           history.push(`/success/${tx.hash}`);
@@ -65,7 +66,7 @@ const Home = () => {
           <div className="flex justify-between items-center pt-2">
             <p className="text-gray-500 text-sm pl-1">Estimated fee: {estimatedFee} ETH</p>
             <button className={`flex justify-center items-center rounded-md p-2 text-white 
-              ${provider && textInput.length > 0 ? 'bg-blue-400' : 'bg-gray-400'} hover:bg-blue-500`}
+              ${provider && textInput.length > 0 ? 'bg-blue-400 hover:bg-blue-500' : 'bg-gray-400 hover:bg-gray-500'} `}
               onClick={handleEngrave}
             >
               <div className="inline-block transform rotate-90 inline-block mr-2">
