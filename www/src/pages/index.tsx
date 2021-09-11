@@ -15,7 +15,7 @@ import Message from "../components/message";
 const Home = () => {
   const history = useHistory();
   const [ providerNotFoundModal, toggleProviderNotFoundModal ] = useModal(false);
-  const { provider, gasPrice } = useEthersContext();
+  const { provider, gasPrice, network } = useEthersContext();
   const [ estimatedFee, setEstimatedFee ] = useState("0.0");
   const [ textInput, setTextInput ] = useState("");
 
@@ -53,12 +53,11 @@ const Home = () => {
       toggleProviderNotFoundModal(true);
     }
   }
-
   return (
     <Layout>
       <div className="container m-auto">
         <div className="flex flex-col justify-center m-auto">
-          <h3 className="text-xl font-bold text-center mb-6">Engrave message into ethereum chain</h3>
+          {network && <h3 className="text-xl font-bold text-center mb-6">Engrave message into the {network.name} chain</h3>}
           <AutoTextArea placeholder="A quote, a song lyric, a message you want to keep or ..." 
             rows={6}
             onChange={e => setTextInput(e.target.value)}
@@ -66,7 +65,7 @@ const Home = () => {
           <div className="flex justify-between items-center pt-2">
             <p className="text-gray-500 text-sm pl-1">Estimated fee: {estimatedFee} ETH</p>
             <button className={`flex justify-center items-center rounded-md p-2 text-white 
-              ${provider && textInput.length > 0 ? 'bg-blue-400 hover:bg-blue-500' : 'bg-gray-400 hover:bg-gray-500'} `}
+              ${provider && textInput.length > 0 ? 'bg-blue-400 hover:bg-blue-500' : 'bg-gray-400'} `}
               onClick={handleEngrave}
             >
               <div className="inline-block transform rotate-90 inline-block mr-2">

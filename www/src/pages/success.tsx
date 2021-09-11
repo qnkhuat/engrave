@@ -1,14 +1,13 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Link, RouteComponentProps } from "react-router-dom";
 
 import useModal from "../hooks/modal";
-
 import Layout from "../components/Layout";
 import Modal from "../components/Modal";
 import Message from "../components/message";
 import { useEthersContext } from "../contexts/ethers";
 
-import { add } from "../lib/engrave";
+import { add, getContractAddress } from "../lib/engrave";
 
 interface Params {
   txHash: string;
@@ -18,23 +17,36 @@ interface Props extends RouteComponentProps<Params> {}
 
 const Success: React.FC<Props> = (props) => {
   const { txHash } = props.match.params;
-  const [ open, toggle ] = useModal(true);
+  const [ open, toggle ] = useModal(false);
   const [ added, setAdded ] = useState(false);
-  const { provider } = useEthersContext();
+  const { provider, network } = useEthersContext();
 
   const handleReject = () => {
     toggle(false);
   }
 
   const handleAccept = () => {
-    if(provider) {
-      add(provider, txHash).then(() => {
+    if(provider && network) {
+      const contractAddress = getContractAddress(network.name);
+      if (!contractAddress) throw new Error("Contract address not found");
+
+      add(provider, contractAddress, txHash).then(() => {
         setAdded(true);
         toggle(false);
-
       }).catch(alert);
+
     }
   }
+
+  useEffect(() => {
+    if (network) {
+      // check if we have key for engrave contract for this address or not
+      const contractAddress = getContractAddress(network.name);
+      if (contractAddress) toggle(true);
+      else setAdded(false); // hide the add to engrave database
+    }
+
+  }, [network]);
 
   return <Layout>
     <div className="container m-auto">

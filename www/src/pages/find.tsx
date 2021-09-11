@@ -3,7 +3,7 @@ import Layout from "../components/Layout";
 import Transaction from "../components/Transaction";
 import { useEthersContext } from "../contexts/ethers";
 import { RouteComponentProps } from "react-router-dom";
-import { getByAddress } from "../lib/engrave";
+import { getContractAddress, getByAddress } from "../lib/engrave";
 import { isTransactionHash } from "../lib/transactions";
 import { ethers } from "ethers";
 import { formatHexString } from "../lib/util";
@@ -17,13 +17,13 @@ interface Props extends RouteComponentProps<Params> {}
 const Find: React.FC<Props> = (props) => {
   const { hash } = props.match.params;
   const [ inputValue, setInputValue ] = useState(hash || "");
-  const { provider } = useEthersContext();
+  const { provider, network } = useEthersContext();
 
   const [ txs, setTxs ] = useState<ethers.providers.TransactionResponse[]>([]);
   const [ error, setError ] = useState("");
 
   const handleFind = useCallback((query: string) => {
-    if(!provider) return;
+    if(!provider || !network) return;
     setError("");
     setTxs([]); // reset
 
@@ -36,7 +36,10 @@ const Find: React.FC<Props> = (props) => {
 
     const findByAddress = async (address:string) => {
       try {
-        const res: string[] = await getByAddress(provider!, address);
+        const contractAddress = getContractAddress(network.name);
+        if (!contractAddress) throw new Error("Contract address not found");
+
+        const res: string[] = await getByAddress(provider!, contractAddress, address);
 
         if (res.length == 0) {
           setError(`Transactions not found for address: ${address}`);
@@ -66,7 +69,7 @@ const Find: React.FC<Props> = (props) => {
   useEffect(() => {
     if( provider && inputValue && inputValue.length > 0 ) {
       const findTimeout = setTimeout(() => {
-       handleFind(inputValue);
+        handleFind(inputValue);
       }, 200);
       return () => clearTimeout(findTimeout);
     }
