@@ -8,13 +8,15 @@ import { ReactComponent as AirplaneIcon } from "../components/icons/airplane.svg
 import AutoTextArea from "../components/AutoTextArea";
 import Layout from "../components/Layout";
 import Modal from "../components/Modal";
+import EngraveSuccess from "../components/messages/EngraveSuccess";
 
 const Home = () => {
   const { provider, gasPrice } = useEthersContext();
   const [ estimatedFee, setEstimatedFee ] = useState("0.0");
   const [ textInput, setTextInput ] = useState("");
-  const [ open, toggle ] = useModal(false);
+  const [ open, toggle ] = useModal(true);
 
+  // check input and calculate price to engrave into the chain
   useEffect(() => {
     const updatePriceEstimationTimeout = setTimeout(() => {
       if( textInput == "" ) {
@@ -58,9 +60,7 @@ const Home = () => {
         </div>
       </div>
       <Modal open={open} onClose={toggle}>
-        <div className="h-24 w-24 bg-white">
-          <h3> Hi there</h3>
-        </div>
+        <EngraveSuccess txHash={"ngockq"}/>
       </Modal>
     </Layout>
   );
