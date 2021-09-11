@@ -18,6 +18,7 @@ const Transaction: React.FC<Props> = ({ tx, showTime=false, className="" }) => {
   }, [tx, showTime]);
 
   return <div className={`text-sm ${className}`}>
+    <p><strong>Sender: </strong> {tx.from}</p>
     <p><strong>Hash: </strong> {tx.hash}</p>
     <p><strong>Status: </strong> {tx.blockNumber ? "Success" : "Pending"}</p>
     {tx.blockNumber && <p><strong>Block:</strong> {tx.blockNumber}</p>}

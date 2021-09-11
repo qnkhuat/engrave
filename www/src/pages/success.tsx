@@ -29,12 +29,10 @@ const Success: React.FC<Props> = (props) => {
     if(provider && network) {
       const contractAddress = getContractAddress(network.name);
       if (!contractAddress) throw new Error("Contract address not found");
-
+      toggle(false);
       add(provider, contractAddress, txHash).then(() => {
         setAdded(true);
-        toggle(false);
-      }).catch(alert);
-
+      }).catch(console.error);
     }
   }
 
