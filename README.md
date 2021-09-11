@@ -1,5 +1,5 @@
 <h1 style="border-bottom:0" align="center">Engrave - Write message into the ethereum chain</h1>
-<a href="https://tstream.club"><p align="center"><img style="border-radius:20px; width:100px;padding:10px;" src="./www/public/logo.png"/></p></a>
+<a><p align="center"><img style="border-radius:20px; width:100px;padding:10px;" src="./www/public/logo.png"/></p></a>
 
 <p align="center"><a href="https://engrave.on.fleek.co">Website</a></p>
 
