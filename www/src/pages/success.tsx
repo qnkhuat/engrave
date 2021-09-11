@@ -31,6 +31,7 @@ const Success: React.FC<Props> = (props) => {
       add(provider, txHash).then(() => {
         setAdded(true);
         toggle(false);
+
       }).catch(alert);
     }
   }
@@ -39,11 +40,13 @@ const Success: React.FC<Props> = (props) => {
     <div className="container m-auto">
       <img alt="hedgehog saying okay" src="/hedgehog.jpg" className="w-2/5 m-auto"/>
       <p>Your message has been queued to add to the chain!</p>
-      <p>Check the status of your transaction <a className="alink" href={`https://etherscan.io/tx/${txHash}`}>here</a></p>
-      <p>Once the transaction is succeed, you can view your message in the <strong>Input Data</strong> section</p>
-      <p>Click <strong>View Input As</strong> {'>'} <strong>UTF-8</strong> to read your meassage</p>
-      <button onClick={handleAccept} className={`border mt-4 p-2 rounded-lg bg-blue-400 text-white ${open || added ? 'hidden' : ''}`}>Add to Engrave database</button>
+      <p>You can view your message in the <strong>Input Data</strong> section on Etherscan <a className="alink" target="#" href={`https://etherscan.io/tx/${txHash}`}>here</a></p>
+      <p>Or view it on Engrave using this <Link className="alink" to={`/find/${txHash}`}>link</Link> </p>
+      <div className="flex justify-center">
+        <button onClick={handleAccept} className={`border mt-4 p-2 rounded-lg bg-blue-400 text-white ${open || added ? 'hidden' : ''}`}>Add to Engrave database</button>
+      </div>
     </div>
+
     <Modal open={open} onClose={() => toggle(false)}>
       <Message messageType="success" className="w-96">
         <strong className="text-xl">Yes!</strong>

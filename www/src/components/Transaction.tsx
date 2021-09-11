@@ -20,8 +20,8 @@ const Transaction: React.FC<Props> = ({ tx, showTime=false, className="" }) => {
   console.log(ethers.utils.toUtf8String(tx.data));
   return <div className={`text-sm ${className}`}>
     <p><strong>Hash:</strong> {tx.hash}</p>
-    <p><strong>Data:</strong></p><p className="whitespace-pre-line"> {ethers.utils.toUtf8String(tx.data)}</p>
     {time && <p><strong>Time:</strong> {time.toLocaleString()}</p>}
+    <p><strong>Data:</strong></p><p className="whitespace-pre-line"> {ethers.utils.toUtf8String(tx.data)}</p>
   </div>
 }
 

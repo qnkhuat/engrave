@@ -23,7 +23,6 @@ const Find: React.FC<Props> = (props) => {
   const [ error, setError ] = useState("");
 
   const handleFind = useCallback((query: string) => {
-    console.log("query: ", query);
     if(!provider) return;
     setError("");
     setTxs([]); // reset
@@ -64,18 +63,25 @@ const Find: React.FC<Props> = (props) => {
     }
   }, [provider]);
 
+
   useEffect(() => {
-    if( inputValue && inputValue.length > 0 ) handleFind(inputValue);
-  }, [provider])
+    if( provider && inputValue && inputValue.length > 0 ) {
+      const findTimeout = setTimeout(() => {
+       handleFind(inputValue);
+      }, 200);
+      return () => clearTimeout(findTimeout);
+    }
+  }, [inputValue]);
 
 
   return <Layout>
     <div className="container m-auto">
-      <div className="border rounded pl-2 flex mb-4">
+      <p className="font-bold text-center text-lg mb-4">Find the messages you added to the chain</p>
+      <div className="rounded border pl-2 flex mb-4 overflow-hidden">
         <input value={inputValue} onChange={(e) => setInputValue(e.target.value)}
-          placeholder="Tx hash or address" className="w-full outline-none" />
+          placeholder="Tx hash or address" className="w-full outline-none"/>
         <button onClick={() => handleFind(inputValue)}
-          className="outline-none rounded p-2 ml-2 bg-blue-400 text-white">Find</button>
+          className="outline-none rounded-r px-4 py-2 ml-2 bg-blue-400 text-white">Find</button>
       </div>
       {txs.map( (tx) => <Transaction key={tx.hash} showTime tx={tx} className="mb-4"></Transaction>)}
       {error && <p>{error}</p>}

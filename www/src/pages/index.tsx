@@ -47,8 +47,7 @@ const Home = () => {
       engraveTranasction({provider, data: textInput})
         .then((tx) => {
           history.push(`/success/${tx.hash}`);
-        })
-        .catch(alert);
+        });
     } else {
       toggleProviderNotFoundModal(true);
     }

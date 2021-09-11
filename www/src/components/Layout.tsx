@@ -18,14 +18,15 @@ const Layout: FC = ({ children }) => {
       {children}
       <div id="footer" className="border-t my-4">
         <div className="container m-auto text-center text-sm mt-2">
+          <div className="flex mt-4 my-2 justify-center items-center">
+            <p>Running on </p><a href="https://ipfs.io/" target="#"><img src="/IPFS_logo.png" /> </a>
+          </div>
           <a href={`https://github.com/qnkhuat/engrave`}><span className="underline">Github</span></a>
-          <br></br>
           <p id="copy-right" className="text-gray-500 text-xs">© {new Date().getFullYear()} Engrave</p>
         </div>
       </div>
     </>
   )
-
 }
 
 export default Layout;
