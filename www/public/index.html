@@ -16,10 +16,21 @@
 
     <meta
         name="description"
-        content="Engrave message into ethereum chain"
+        content="Write message into the ethereum chain"
         />
 
     <title>Engrave</title>
+    <script async src="https://www.googletagmanager.com/gtag/js"></script>
+    <script type="text/javascript">
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      const GA_KEY = "%REACT_APP_GA%";
+      if (GA_KEY.length > 0) {
+        gtag('js', new Date());
+        gtag('config', GA_KEY);
+      }
+
+    </script>
   </head>
   <body>
     <noscript>You need to enable JavaScript to run this app.</noscript>

@@ -16,7 +16,7 @@ const Layout: FC = ({ children }) => {
         </div>
       </div>
       {children}
-      <div id="footer" className="border-t my-4">
+      <div id="footer" className="border-t mb-4 mt-8">
         <div className="container m-auto text-center text-sm mt-2">
           <div className="flex mt-4 my-2 justify-center items-center">
             <p>Running on </p><a href="https://ipfs.io/" target="#"><img src="/IPFS_logo.png" /> </a>

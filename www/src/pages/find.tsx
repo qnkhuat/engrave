@@ -31,7 +31,7 @@ const Find: React.FC<Props> = (props) => {
       then((res) => {
         setTxs(lastState => [...lastState, res]);
       }).catch(() => {
-        setError(`Not found any transactions for hash: ${txHash}`)
+        setError(`Transactions not found for hash: ${txHash}`)
       });
 
     const findByAddress = async (address:string) => {
@@ -39,7 +39,7 @@ const Find: React.FC<Props> = (props) => {
         const res: string[] = await getByAddress(provider!, address);
 
         if (res.length == 0) {
-          setError(`Not found any transactions for address: ${address}`);
+          setError(`Transactions not found for address: ${address}`);
           return;
         }
 
@@ -50,7 +50,7 @@ const Find: React.FC<Props> = (props) => {
           }, 200);
         })
       } catch (err) {
-        setError(`Not found any transactions for address: ${address}`);
+        setError(`Transactions not found for address: ${address}`);
       }
     };
 
