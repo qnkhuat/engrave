@@ -30,10 +30,12 @@ By adding to this smart contract users can query all message they wrote using th
 
 Currently this contract is deployed on:
 - [Ropsten](https://ropsten.etherscan.io/address/0xf166427615c41206246ff3e2d8332f4890b38068)
-- [Kovan]()
-- [Rinkeby]()
-- [Goerli]()
-- Ethereum Mainnet(soon)
+
+Soon to be deployed:
+- Kovan
+- Rinkeby
+- Goerli
+- Ethereum Mainnet
 
 ## The icon
 <div>Icons made by <a href="https://www.freepik.com" title="Freepik">Freepik</a> from <a href="https://www.flaticon.com/" title="Flaticon">www.flaticon.com</a></div>
