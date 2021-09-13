@@ -57,7 +57,7 @@ const Home = () => {
     <Layout>
       <div className="container m-auto">
         <div className="flex flex-col justify-center m-auto">
-          {network && <h3 className="text-xl font-bold text-center mb-6">Engrave message into the {network.name} chain</h3>}
+          {network && <h3 className="text-xl font-bold text-center mb-6">Engrave message into the {network.name == "homestead" ? "ethereum" : network.name} chain</h3>}
           <AutoTextArea placeholder="A quote, a song lyric, a message you want to keep or ..." 
             rows={6}
             onChange={e => setTextInput(e.target.value)}
