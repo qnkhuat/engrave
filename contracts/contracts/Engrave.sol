@@ -1,6 +1,5 @@
 /*
-This address is used to store all transactiosn hashes that used Engrave service to add messages to the ETH chain
-
+This contract is used to store all transactions hashes that used Engrave service to add messages to the ETH chain
 */
 pragma solidity ^0.8.0;
 
